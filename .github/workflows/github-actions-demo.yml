@@ -3,9 +3,13 @@ run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 jobs:
   Explore-GitHub-Actions:
+    environment: dev
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo " This job is running in the ${{ github.env }} environment "
+      - run: echo " Outputting the test secret from this repo - ${{ secrets.TEST_DEMO_SECRET }} "
+      - run: echo " Outputting the test secret from the ${{ github.env }} environment - ${{ secrets.TEST_DEMO_SECRET }} "
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
