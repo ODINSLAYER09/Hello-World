@@ -5,11 +5,16 @@ jobs:
   Explore-GitHub-Actions:
     environment: dev
     runs-on: ubuntu-latest
+
+    env:
+      MY_ENVIRONMENT: dev
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo " This job is running in the ${{ github.env }} environment "
       - run: echo " Outputting the test secret from this repo - ${{ secrets.TEST_DEMO_SECRET }} "
-      - run: echo " Outputting the test secret from the ${{ vars.ENV_NAME }} environment - ${{ secrets.TEST_DEMO_SECRET }} "
+      - run: echo " Outputting the test secret from the ${{ env.MY_ENVIRONMENT }} environment - ${{ secrets.TEST_DEMO_SECRET }} "
+      - run: echo " Outputting the test variable from this repo - ${{ vars.TEST_REPO_VARIABLE }} "
+      - run: echo " Outputting the test variable from the ${{ env.MY_ENVIRONMENT }} environment - ${{ vars.TEST_VARIABLE }} "
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
